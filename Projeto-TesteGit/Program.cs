@@ -14,17 +14,17 @@ namespace Projeto_TesteGit
             lista.Add(1);
             lista.Add(2);
 
-            for(int i=0;i<t.Day;i++)
+            for (int i = 0; i < t.Day; i++)
             {
                 lista.Add(i);
             }
 
-            foreach(int x in lista)
+            foreach (int x in lista)
             {
                 Console.Write(x + " ");
             }
 
-            
+            Console.Write("EAE JOVEM");
 
             Console.WriteLine("\n\nTeste 1: Learning how to work with GitHub/GitBash... \n" + t.ToLongDateString());
         }
