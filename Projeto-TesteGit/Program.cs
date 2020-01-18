@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 
 namespace Projeto_TesteGit
 {
@@ -8,25 +9,45 @@ namespace Projeto_TesteGit
     {
         static void Main(string[] args)
         {
-            DateTime t = new DateTime(2020, 1, 17, 21, 7, 56);
-            HashSet<int> lista = new HashSet<int>();
-
-            lista.Add(1);
-            lista.Add(2);
-
-            for (int i = 0; i < t.Day; i++)
+            string sourcePath = @"C:\Users\vinie\Documents\Arquivos\Vinicius\Estudo\Cursos Adicionais\Udemy\C# do Iniciante ao Avançado\Arquivos C# - Teste\espinosa.repositorie\file1.txt";
+            
+            try
             {
-                lista.Add(i);
+                string[] lines = File.ReadAllLines(sourcePath);
+                int[,] mat = new int[lines.Length,3];
+                int contLine = 0, contColumn = 0, qtdColumn=0;
+
+                foreach (string line in lines)
+                {
+                    string[] aux = line.Split(" ");
+                    qtdColumn = aux.Length;
+                    contColumn = 0;
+                    foreach(string x in aux)
+                    {
+                        mat[contLine,contColumn] = int.Parse(x);
+                        contColumn++;
+                    }
+                    contLine++;
+                }
+
+                for(int i=0;i<lines.Length;i++)
+                {
+                    for(int j=0;j<qtdColumn;j++)
+                    {
+                        Console.Write(mat[i, j].ToString() + " "); 
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            catch (Exception r)
+            {
+                Console.WriteLine("Error: " + r.Message);
             }
 
-            foreach (int x in lista)
-            {
-                Console.Write(x + " ");
-            }
-
-            Console.Write("EAE JOVEM");
-
-            Console.WriteLine("\n\nTeste 1: Learning how to work with GitHub/GitBash... \n" + t.ToLongDateString());
         }
     }
 }
